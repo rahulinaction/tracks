@@ -29,6 +29,8 @@ import {
     //console.log("Setup",useContext(AuthContext));
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    //const {errorMessage} = state;
+    console.log("State is",state);
 
     return(
             <View>
@@ -38,6 +40,7 @@ import {
             <Spacer>
                <Button title="Signup" onPress={()=>{ signup({email,password}) }} />
             </Spacer>  
+           { state["errorMessage"] ? <Text>{state["errorMessage"]}</Text>: null}
         </View>
       )
   }
