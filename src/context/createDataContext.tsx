@@ -14,7 +14,7 @@ export default (reducer: any, actions: {}, defaultValue: any) => {
         for(let key in actions) {
             boundActions[key] = actions[key](dispatch);
         }
-        console.log("BoundActions",boundActions);
+        
         return(
             <Context.Provider value={{state, ...boundActions}}>
                 {children}
