@@ -38,6 +38,8 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import {Provider as AuthProvider} from './src/context/AuthContext'; 
+import { setNavigator } from './src/navigationRef';
+
 type Props = {};
 
 const switchNavigator = createSwitchNavigator({
@@ -61,56 +63,11 @@ const App =  createAppContainer(switchNavigator);
 export default()=> {
   return (
     <AuthProvider>
-      <App />
+      <App ref={(navigator)=>{setNavigator(navigator)}} />
     </AuthProvider>  
   )
 };
-/*export default class App extends Component<Props> {
-  render() {
-    return (
-      <View>
-        <StatusBar barStyle="dark-content" />
-        <SafeAreaView>
-          <ScrollView
-            contentInsetAdjustmentBehavior="automatic"
-            style={styles.scrollView}>
-            <Header />
-            <View style={styles.body}>
-              <View style={styles.sectionContainer}>
-                <Text style={styles.sectionTitle}>Step One</Text>
-                <Text style={styles.sectionDescription}>
-                  Edit <Text style={styles.highlight}>App.js</Text> to change this
-                  screen and then come back to see your edits.
-                </Text>
-              </View>
-              <View style={styles.sectionContainer}>
-                <Text style={styles.sectionTitle}>See Your Changes</Text>
-                <Text style={styles.sectionDescription}>
-                  <ReloadInstructions />
-                </Text>
-              </View>
-              <View style={styles.sectionContainer}>
-                <Text style={styles.sectionTitle}>Debug</Text>
-                <Text style={styles.sectionDescription}>
-                  <DebugInstructions />
-                </Text>
-              </View>
-              <View style={styles.sectionContainer}>
-                <Text style={styles.sectionTitle}>Learn More</Text>
-                <Text style={styles.sectionDescription}>
-                  Read the docs to discover what to do next:
-                </Text>
-              </View>
-              <LearnMoreLinks />
-            </View>
-          </ScrollView>
-        </SafeAreaView>
-      </View>
-    );
-  }
- 
-};
-*/
+
 const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: Colors.lighter,
