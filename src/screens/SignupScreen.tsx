@@ -15,6 +15,7 @@ import {
   } from 'react-navigation';
   
   import {Input, Button} from 'react-native-elements';
+  import {NavigationEvents} from 'react-navigation';
   import Spacer from '../components/Spacer';
   import NavLink from '../components/NavLink';
   import AuthForm from '../components/AuthForm';
@@ -28,12 +29,13 @@ import {
 //
 
   const SignupScreen = ({navigation}: Props) => {
-    const {state, signup} = useContext(AuthContext);
+    const {state, signup, clearErrorMessage} = useContext(AuthContext);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     return(
         <View>
+            <NavigationEvents onWillBlur={()=>{clearErrorMessage}} />
             < AuthForm headerText="Sign up for tracker" 
               errorMessage = {state["errorMessage"]}
               submitButtonText = "Sign up"

@@ -5,7 +5,7 @@ interface Props {
 }
 
 export default (reducer: any, actions: {}, defaultValue: any) => {
-    const Context = React.createContext({state:"", signout:"", signup:"", signin:""});
+    const Context = React.createContext({state:"", signout:"", signup:"", signin:"",clearErrorMessage:"", tryLocalSignin: ""});
 
     const Provider : React.FC<Props>= ({children}) => {
         const [state, dispatch] = useReducer(reducer, defaultValue);
