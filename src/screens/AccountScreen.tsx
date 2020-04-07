@@ -1,22 +1,30 @@
-import React,{Component} from 'react';
+import React,{Component, useContext} from 'react';
 import {
-    SafeAreaView,
     StyleSheet,
     ScrollView,
     View,
     Text,
     StatusBar,
   } from 'react-native';
-  type Props = {};
 
+import {SafeAreaView} from 'react-navigation'; 
 
-export default class AccountScreen extends Component<Props> {
-    render() {
+import Spacer from '../components/Spacer';
+import {Context as AuthContext} from '../context/AuthContext';
+import { Button } from 'react-native-elements';
+
+type Props = {
+  navigation: any
+};
+const AccountScreen = ({navigation}: Props) => {
+    const {signout } = useContext(AuthContext);
+
       return (
-        <View>
+        <SafeAreaView forceInset={{"top": "always"}}>
             <Text>Account Screen</Text>
-        </View>
+            <Button title="Signout" onPress={signout } />
+        </SafeAreaView>
       );
-    }
    
-  };
+};
+export default AccountScreen;

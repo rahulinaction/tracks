@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
 import {
-    SafeAreaView,
     StyleSheet,
     ScrollView,
     View,
@@ -9,13 +8,15 @@ import {
   } from 'react-native';
   type Props = {};
 
-
+import {SafeAreaView} from 'react-navigation';
+import Map from '../components/Map';
 export default class TrackCreateScreen extends Component<Props> {
     render() {
       return (
-        <View>
+        <SafeAreaView forceInset={{"top": "always"}}>
             <Text>Track CreateScreen</Text>
-        </View>
+            <Map />
+        </SafeAreaView>
       );
     }
    

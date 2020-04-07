@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
 import {
-    SafeAreaView,
     StyleSheet,
     ScrollView,
     View,
@@ -8,14 +7,14 @@ import {
     StatusBar,
   } from 'react-native';
   type Props = {};
-
+  import {SafeAreaView} from 'react-navigation';
 
 export default class TrackDetailScreen extends Component<Props> {
     render() {
       return (
-        <View>
+        <SafeAreaView forceInset={{"top": "always"}}>
             <Text> Track DetailScreen</Text>
-        </View>
+        </SafeAreaView>
       );
     }
    

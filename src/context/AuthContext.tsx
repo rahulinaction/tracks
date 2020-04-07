@@ -2,6 +2,7 @@ import createDataContext from './createDataContext';
 import trackerApi from '../api/tracker';
 import AsyncStorage from '@react-native-community/async-storage';
 import {navigate} from '../navigationRef';
+
 const authReducer = (state: any, action: any) => {
     switch(action.type){
         case "add_error":
@@ -20,6 +21,10 @@ const authReducer = (state: any, action: any) => {
             return { errorMessage: "", token: action.payload};
         break;
 
+        case "signout":
+            return {token: null, errorMessage: ""};
+        break;
+        
         default:
             return state;
     }
@@ -74,7 +79,11 @@ const signin =(dispatch: any) => {
 
 };
 const signout =(dispatch: any) => {
-
+    return async() => {
+        await AsyncStorage.removeItem("token");
+        dispatch({"type":"signout"})
+        navigate("loginFlow",{});
+    };
 };
 export const {Provider, Context} = createDataContext(
     authReducer,

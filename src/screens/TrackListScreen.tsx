@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
 import {
-    SafeAreaView,
     StyleSheet,
     ScrollView,
     View,
@@ -8,7 +7,7 @@ import {
     Button,
     StatusBar,
   } from 'react-native';
-
+  import {SafeAreaView} from 'react-navigation';
 
   import { NavigationParams,
     NavigationScreenProp,
@@ -28,11 +27,11 @@ export default class TrackListScreen extends Component<Props> {
     render() {
       const { navigation } = this.props;  
       return (
-        <View>
+        <SafeAreaView forceInset={{"top": "always"}}>
             <Text> Track ListScreen</Text>
             <Button title="Go to Main Flow" onPress={()=>{ navigation.navigate('TrackDetail'); }} />
 
-        </View>
+        </SafeAreaView>
       );
     }
    
