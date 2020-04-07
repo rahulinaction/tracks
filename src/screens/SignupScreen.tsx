@@ -4,6 +4,7 @@ import {
     StyleSheet,
     ScrollView,
     View,
+    TouchableOpacity,
     Text,
     StatusBar,
   } from 'react-native';
@@ -15,6 +16,8 @@ import {
   
   import {Input, Button} from 'react-native-elements';
   import Spacer from '../components/Spacer';
+  import NavLink from '../components/NavLink';
+  import AuthForm from '../components/AuthForm';
   import {Context as AuthContext} from '../context/AuthContext';
 
   interface Props {
@@ -24,22 +27,22 @@ import {
   
 //
 
-  const SignupScreen: React.FC<Props> = ({navigation}) => {
+  const SignupScreen = ({navigation}: Props) => {
     const {state, signup} = useContext(AuthContext);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    //const {errorMessage} = state;
-    console.log("State is",state);
 
     return(
-            <View>
-            <Text>Signup Screen</Text>
-            <Input label="email"  autoCapitalize="none" autoCorrect={false}  value={email} onChangeText={newEmail=> setEmail(newEmail)}/>
-            <Input label="password"  value={password} onChangeText={newPassword=> setPassword(newPassword)} />
-            <Spacer>
-               <Button title="Signup" onPress={()=>{ signup({email,password}) }} />
-            </Spacer>  
-           { state["errorMessage"] ? <Text>{state["errorMessage"]}</Text>: null}
+        <View>
+            < AuthForm headerText="Sign up for tracker" 
+              errorMessage = {state["errorMessage"]}
+              submitButtonText = "Sign up"
+              onSubmit={({email, password})=> signup({email,password})}
+            />
+            <NavLink 
+              text="Already have an account"
+              routeName="Signin"
+            />
         </View>
       )
   }
